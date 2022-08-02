@@ -3,8 +3,6 @@ class PasswordManager2
     def initialize
         #Create an array to fill with hashes of data.
         @passwords = [
-            {'service' => 'facebook', 'password' => 'qwerty', 'added_on' => '28/7/22'}, #Added a couple of examples for testing
-            {'service' => 'amazon', 'password' => 'pwrd123', 'added_on' => '29/7/22'}
         ]
     end
 
@@ -51,7 +49,7 @@ class PasswordManager2
 
     def update(service, new_password)
         #checks if the input password is unique. If so, replaces the existing password for a service with the new input. Also adds a new k:v for when it was updated.
-        if uniqPass(new_password)
+        if uniquePass(new_password)
             @passwords.find{|e| e['service'] == service}['password'] = new_password
             @passwords.find{|e| e['service'] == service}['updated_on'] = Time.now
         end
