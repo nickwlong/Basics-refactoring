@@ -19,7 +19,7 @@ class PasswordManager2
     def add(service, password)
         #Checks to see if arguments are unique, pushes a new hash to the array.
         if uniquePass(password) && uniqueServ(service)
-            @passwords.push({ 'service' => service, 'password' => password, 'time' => Time.now })
+            @passwords.push({ 'service' => service, 'password' => password, 'added_on' => Time.now })
         end
     end
 
@@ -35,7 +35,7 @@ class PasswordManager2
 
     def sort_by(type, order = nil)
         #sorts the array itself by type (have to downcase as capitals are alphabetically before lower cases)
-        @passwords.sort_by! {|e| e[type].downcase}
+        @passwords.sort_by! {|e| e[type]}
         #if a second argument is given as 'reverse' then the order of the array is reversed.
         @passwords.reverse! if order == 'reverse'
         #produces a list of the services in order as determined above
