@@ -58,6 +58,3 @@ class PasswordManager2
     end
 end
 
-NickPasswords = PasswordManager2.new
-
-p NickPasswords.add('Netflix','qwerty123')
