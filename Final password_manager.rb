@@ -10,7 +10,7 @@ class PasswordManager2
     def initialize
         @passwords = [
             {'service' => 'facebook', 'password' => 'qwerty', 'added_on' => '28/7/22'},
-            {'service' => 'amazon', 'password' => 'pwrd123', 'added_on' => '29/7/22'},
+            {'service' => 'amazon', 'password' => 'pwrd123', 'added_on' => '29/7/22'}
         ]
     end
 
