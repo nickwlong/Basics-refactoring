@@ -1,10 +1,3 @@
-#Tasks:
-#1/ Make uniquePassword? and uniqueService? (can we include "?" in method names?)
-#2/ Make remove method
-#3/ Make services method
-#4/ Make password_for
-#5/ Later: add / update / sort_by
-
 class PasswordManager2
 
     def initialize
@@ -15,26 +8,46 @@ class PasswordManager2
     end
 
     def uniquePass(pass)
+        !@passwords.any? { |p| p["password"] == pass}
     end
 
     def uniqueServ(service)
+        !@passwords.any? { |p| p["service"] == service}
     end
 
-    def add
+    def add(service, password)
+        newHash = { 'service' => service, 'password' => password, 'time' => Time.now }
+        
+        if uniquePass(password) && uniqueServ(service)
+            @passwords.push(newHash)
+        end
     end
 
-    def remove
+    def remove(service)
+        @passwords.delete_if {|s| s['service'] == service}
     end
 
     def services
+        @passwords.map {|e| e['service']}
     end
 
-    def sort_by
+    def sort_by(type, order = nil)
+        @passwords.sort_by! {|e| e[type].downcase}
+
+        @passwords.reverse! if order == 'reverse'
+
+        @passwords.map {|e| e['service']}
     end
 
-    def password_for
+    def password_for(service)
+        @passwords.find {|e| e['service']==service}['password'] 
     end
 
-    def update
+    def update(service, new_password)
+        if uniqPass(new_password)
+            @passwords.find{|e| e['service'] == service}['password'] = new_password
+            @passwords.find{|e| e['service'] == service}['updated_on'] = Time.now
+        end
     end
 end
+
