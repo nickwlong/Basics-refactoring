@@ -15,14 +15,12 @@ class PasswordManager2
         @manager = []
     end
 
-    attr_accessor 'manager'
-
     def uniquePass(pass)
-        !@manager.any?{|acc| acc.password == pass}
+        !@manager.any?{|account| account.password == pass}
     end
 
     def uniqueServ(serv)
-        !@manager.any?{|acc| acc.service == serv}
+        !@manager.any?{|account| account.service == serv}
     end
 
     def add(service, password)
@@ -30,37 +28,37 @@ class PasswordManager2
     end
 
     def remove(service)
-        @manager.delete_if{|acc| acc.service == service}
+        @manager.delete_if{|account| account.service == service}
     end
 
     def services
-        @manager.map{|acc| acc.service}
+        @manager.map{|account| account.service}
     end
 
     def sort_by(type, order = nil)
 
         if type == 'service'
-            @manager.sort_by!{|acc| acc.service}
+            @manager.sort_by!{|account| account.service}
         elsif type == 'added_on'
-            @manager.sort_by!{|acc| acc.time}
+            @manager.sort_by!{|account| account.time}
         end
 
         @manager.reverse! if order == 'reverse'
 
-        @manager.map{|acc| acc.service}
+        @manager.map{|account| account.service}
     end
 
     def password_for(service)
-        @manager.find{|acc| acc.service == service}.password
+        @manager.find{|account| account.service == service}.password
     end
 
     def update(service, new_password)
 
-        acc = @manager.find{|acc| acc.service == service}
+        account = @manager.find{|account| account.service == service}
 
         if uniquePass(new_password)
-            acc.password = new_password
-            acc.time = Time.now
+            account.password = new_password
+            account.time = Time.now
         end
     end    
 end
