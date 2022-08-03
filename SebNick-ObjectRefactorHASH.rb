@@ -1,6 +1,5 @@
 class Account
-    def initialize(service, password)
-        @service = service
+    def initialize(password)
         @password = password
         @time = Time.now
     end
@@ -24,7 +23,7 @@ class PasswordManager2
     end
 
     def add(service, password)
-        @manager[service] = Account.new(service, password) if uniqueServ(service) && uniquePass(password)
+        @manager[service] = Account.new(password) if uniqueServ(service) && uniquePass(password)
     end
 
     def remove(service)
@@ -70,7 +69,7 @@ pm2.add('github', 'asdgfjhjn')
 
 p pm2.services
 
-p pm2.sort_by('added_on')
+p pm2.sort_by('added_on', 'reverse')
 
 
 

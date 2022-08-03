@@ -24,7 +24,7 @@ class PasswordManager2
     end
 
     def add(service, password)
-        @manager << Account.new(service, password)
+        @manager << Account.new(service, password) if uniquePass(password) && uniqueServ(service)
     end
 
     def remove(service)
@@ -68,17 +68,11 @@ pm2 = PasswordManager2.new
 pm2.add('netflix', 'qwerty')
 pm2.add('facebook', 'LOL123')
 pm2.add('github', 'code111')
-
-
-p pm2.services
-
-p pm2.password_for('facebook')
-p pm2.update('facebook', 'HAHA321')
-p pm2.password_for('facebook')
+pm2.add('github', 'yes123')
+pm2.add('wooo','qwerty')
 
 p pm2.services
 
-p pm2.manager
 
 
 
