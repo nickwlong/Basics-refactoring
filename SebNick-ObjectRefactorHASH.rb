@@ -60,19 +60,6 @@ class PasswordManager2
     end    
 end
 
-pm2 = PasswordManager2.new
-
-pm2.add('netflix', 'qwerty')
-pm2.add('facebook', 'LOL123')
-pm2.add('github', 'code111')
-pm2.add('github', 'asdgfjhjn')
-
-p pm2.services
-
-p pm2.sort_by('added_on', 'reverse')
-
-
-
 
 
 
